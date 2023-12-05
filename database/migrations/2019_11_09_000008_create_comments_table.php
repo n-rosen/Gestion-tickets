@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->longText('comment_text');
 
             $table->timestamps();
-
+            $table->engine = 'InnoDB';
             $table->softDeletes();
         });
     }

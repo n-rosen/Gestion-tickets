@@ -14,7 +14,7 @@ class AddRelationshipFieldsToCommentsTable extends Migration
             $table->foreign('ticket_id', 'ticket_fk_583774')->references('id')->on('tickets');
 
             $table->unsignedInteger('user_id')->nullable();
-
+            $table->engine = 'InnoDB';
             $table->foreign('user_id', 'user_fk_583777')->references('id')->on('users');
         });
     }

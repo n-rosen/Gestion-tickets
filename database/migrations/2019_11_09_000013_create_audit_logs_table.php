@@ -17,6 +17,7 @@ class CreateAuditLogsTable extends Migration
             $table->text('properties')->nullable();
             $table->string('host', 45)->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 }

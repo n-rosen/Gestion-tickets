@@ -16,7 +16,7 @@ class AddRelationshipFieldsToTicketsTable extends Migration
             $table->unsignedInteger('priority_id');
 
             $table->foreign('priority_id', 'priority_fk_583764')->references('id')->on('priorities');
-
+            $table->engine = 'InnoDB';
             $table->unsignedInteger('category_id');
 
             $table->foreign('category_id', 'category_fk_583765')->references('id')->on('categories');

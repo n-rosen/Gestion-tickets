@@ -12,7 +12,7 @@ class CreatePrioritiesTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-
+            $table->engine = 'InnoDB';
             $table->string('color')->nullable();
 
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreatePermissionRolePivotTable extends Migration
             $table->foreign('role_id', 'role_id_fk_583549')->references('id')->on('roles')->onDelete('cascade');
 
             $table->unsignedInteger('permission_id');
-
+            $table->engine = 'InnoDB';
             $table->foreign('permission_id', 'permission_id_fk_583549')->references('id')->on('permissions')->onDelete('cascade');
         });
     }

@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
             $table->longText('content')->nullable();
 
             $table->string('author_name')->nullable();
-
+            $table->engine = 'InnoDB';
             $table->string('author_email')->nullable();
 
             $table->timestamps();

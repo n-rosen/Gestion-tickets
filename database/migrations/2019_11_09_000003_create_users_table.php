@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-
+            $table->engine = 'InnoDB';
             $table->string('email')->unique();
 
             $table->datetime('email_verified_at')->nullable();
