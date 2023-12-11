@@ -1,10 +1,12 @@
+
 <?php
 Route::get('/', 'TicketController@create');
 Route::get('/home', function () {
-    $route = Gate::denies('dashboard_access') ? 'admin.tickets.index' : 'admin.home';
+    $route = Gate::denies('dashboard_access') ? 'user.tickets' : 'admin.home';
     if (session('status')) {
         return redirect()->route($route)->with('status', session('status'));
     }
+
 
     return redirect()->route($route);
 });
@@ -14,6 +16,7 @@ Auth::routes(['register' => false]);
 Route::post('tickets/media', 'TicketController@storeMedia')->name('tickets.storeMedia');
 Route::post('tickets/comment/{ticket}', 'TicketController@storeComment')->name('tickets.storeComment');
 Route::resource('tickets', 'TicketController')->only(['show', 'create', 'store']);
+Route::get('user-tickets', 'TicketController@userTickets')->name('user.tickets');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');

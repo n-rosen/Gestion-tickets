@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">@lang('cruds.ticket.fields.title')</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-right">Asunto</label>
 
                             <div class="col-md-6">
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title">
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="content" class="col-md-4 col-form-label text-md-right">@lang('cruds.ticket.fields.content')</label>
+                            <label for="content" class="col-md-4 col-form-label text-md-right">Mensaje</label>
 
                             <div class="col-md-6">
                                 <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="3" required>{{ old('content') }}</textarea>
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="attachments" class="col-md-4 col-form-label text-md-right">{{ trans('cruds.ticket.fields.attachments') }}</label>
+                            <label for="attachments" class="col-md-4 col-form-label text-md-right">Adjuntar archivo</label>
 
                             <div class="col-md-6">
                                 <div class="needsclick dropzone @error('attachments') is-invalid @enderror" id="attachments-dropzone">

@@ -31,16 +31,16 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'         => 'required',
-            'content'       => 'required',
-            'author_name'   => 'required',
-            'author_email'  => 'required|email',
+            'title' => 'required',
+            'content' => 'required',
+            'author_name' => 'required',
+            'author_email' => 'required|email',
         ]);
 
         $request->request->add([
-            'category_id'   => 1,
-            'status_id'     => 1,
-            'priority_id'   => 1
+            'category_id' => 1,
+            'status_id' => 1,
+            'priority_id' => 1
         ]);
 
         $ticket = Ticket::create($request->all());
@@ -49,7 +49,7 @@ class TicketController extends Controller
             $ticket->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('attachments');
         }
 
-        return redirect()->back()->withStatus('Your ticket has been submitted, we will be in touch. You can view ticket status <a href="'.route('tickets.show', $ticket->id).'">here</a>');
+        return redirect()->back()->withStatus('Your ticket has been submitted, we will be in touch. You can view ticket status <a href="' . route('tickets.show', $ticket->id) . '">here</a>');
     }
 
     /**
@@ -65,6 +65,16 @@ class TicketController extends Controller
         return view('tickets.show', compact('ticket'));
     }
 
+    public function userTickets()
+    {
+        // Obtén el correo electrónico del usuario autenticado
+        $userEmail = auth()->user()->email;
+
+        // Busca los tickets que tienen al autor igual al correo del usuario
+        $userTickets = Ticket::where('author_email', $userEmail)->get();
+
+        return view('tickets.user_tickets', compact('userTickets'));
+    }
     public function storeComment(Request $request, Ticket $ticket)
     {
         $request->validate([
@@ -72,9 +82,9 @@ class TicketController extends Controller
         ]);
 
         $comment = $ticket->comments()->create([
-            'author_name'   => $ticket->author_name,
-            'author_email'  => $ticket->author_email,
-            'comment_text'  => $request->comment_text
+            'author_name' => $ticket->author_name,
+            'author_email' => $ticket->author_email,
+            'comment_text' => $request->comment_text
         ]);
 
         $ticket->sendCommentNotification($comment);
